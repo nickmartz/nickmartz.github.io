@@ -23,7 +23,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		
 		
-		<button type = "button" class= "btn btn-default" onclick="location.href = 'index.html';">
+		<button type = "button" class= "btn btn-default" onclick="location.href = 'main.html';">
 			<i class="fas fa-arrow-left" >Back</i>
 		</button>
 	</head>
@@ -65,13 +65,12 @@
 						}
 					});
 
-					var newElement = document.createElement('li');
+					//var newElement = document.createElement('li');
 					$("#addToList").click(function(){
 						document.getElementById("autocomplete-input").value = '';	//Clears the input value
-						
-
-						document.getElementById("groceryList").appendChild(newElement);
-						newElement.innerHTML= count + "  " + val + "  <button class='delete' >X</button>";
+						$("#groceryList").append('<li><button class = "delete">X</button>'+val+'</li>');
+						//document.getElementById("groceryList").appendChild(newElement);
+						//newElement.innerHTML= count + "  " + val + "  <button class='delete' >X</button>";
 						
 						$('.delete').on('click', function(){
 							$(this).parent().remove();
@@ -134,7 +133,7 @@
 				</div>
 			</div>
 		<div class="modal-footer">
-			<button id = "addToList" class="modal-close waves-effect waves-green btn-flat">Add to List</button>
+			<button id = "addToList" class="modal-close waves-effect waves-green btn-flat" >Add to List</button>
 		</div>
 		</div>
 		

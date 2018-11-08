@@ -10,29 +10,45 @@
         
         <title>FindMyIngredients</title>
         
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
 		<!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     </head>
     
     <body>
-        <div class="text-center" style="padding-bottom: 50px">
+	
+
+		
+        <div class="center-align">
             <img src="images/Banner.png" alt="banner" style="width: 300px; height: 50px; margin: 25px">
         </div>
-
-
-		<div class="text-center" style="padding-bottom: 100px">
-            <img src="images/profile.png" alt="banner" style="width: 200px; height: 200px; margin: 25px">
-        </div>
-        
-        <div class="text-center" style="padding-bottom: 20px">
-            <button type="button" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 5px" onclick="location.href = 'new_list.html';">Search Item</button>
-        </div>
-        
-        <div class="text-center"  style="padding-bottom: 100px">
-            <button type="button" class="btn red" name="new_list" style="width: 200px;" onclick="location.href = 'saved_lists.html';">My Saved Lists</button>
-        </div>
+		
+		<h2 class="center-align"> Login </h2>
+		
+		
+		<div class="container">
+			
+			<div class="row">
+				<form class="cmxform" id="formValidate" method="get" action="">
+					<div class="input-field col s12">
+						<input type="text">
+						<label for="cemail">Email</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="password" type="password">
+						<label for="password">Password</label>
+					</div>
+					<div class="center-align">
+						<a class="waves-effect waves-light btn" onclick="location.href = 'main.html';">Submit</a>
+					</div>
+				</form>
+			</div>
+       </div>
         
     </body>
     
