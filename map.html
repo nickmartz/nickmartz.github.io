@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- Open Icons -->
+        <link href="bootstrap/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+
+        <title>FindMyIngredients</title>
+        
+        <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+            
+        </style>
+        
+        <button type = "button" class= "btn btn-primary" onclick="location.href = 'detailed_view.html';"><span class="oi oi-action-undo"></span> BACK</button>
+        
+        <button type = "button" class= "btn btn-primary" onclick="location.href = 'main.html';"><span class="oi oi-home"></span> HOME</button>
+        
+    </head>
+    
+    <body>
+        <div class="text-center">
+            <img src="images/maps.png" alt="banner" style="width: 150px; height: 100px; padding-bottom: 40px">
+        </div>
+        
+        <div style="font-family: 'Roboto','sans-serif'; text-align: center; padding-bottom: 30px;">
+        <b>Start: </b>
+        <select id="start">
+            <option value="University of California, San Diego">UCSD</option>
+        </select>
+            
+        <b>End: </b>
+        <select id="end">
+            <option value="Sunshine Market, La Jolla">Sunshine Market</option>
+            <option value="Ralphs, La Jolla">Ralphs</option>
+            <option value="Whole Foods, La Jolla">Whole Foods</option>
+        </select>
+        </div>
+        
+        <div id="map" style="overflow:hidden; padding-bottom: 10px; position:relative; height:500px; padding-top: 5%;"></div>
+        
+        <script>
+            function initMap() {
+                var directionsService = new google.maps.DirectionsService;
+                var directionsDisplay = new google.maps.DirectionsRenderer;
+                var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: {lat: 32.7, lng: -117.16}
+                });
+                
+                directionsDisplay.setMap(map);
+
+                var onChangeHandler = function() {
+                calculateAndDisplayRoute(directionsService, directionsDisplay);
+                };
+                
+                document.getElementById('start').addEventListener('change', onChangeHandler);
+                document.getElementById('end').addEventListener('change', onChangeHandler);
+            }
+
+            function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+                directionsService.route({
+                origin: document.getElementById('start').value,
+                destination: document.getElementById('end').value,
+                travelMode: 'DRIVING'
+                }, function(response, status) {
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
+                    }
+                });
+            }
+    </script>
+        
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXYQUt4XhpbTn3whG52-YDdrcIWGjCuKY&callback=initMap">
+    </script>
+        
+  </body>
+</html>

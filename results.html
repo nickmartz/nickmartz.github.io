@@ -9,31 +9,176 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <title>FindMyIngredients</title>
-        
+		
+		
+		
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 		<!-- Font Awesome -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		
-		<button type = "button" class= "btn btn-default" onclick="location.href = 'location.html';">
+		
+		
+		<button type = "button" class= "btn btn-default" onclick="location.href = 'main.html';">
 			<i class="fas fa-arrow-left" >Back</i>
 		</button>
-    </head>
-    
+        
+        <button type = "button" class= "btn btn-default" onclick="location.href = 'index.html';">
+			<i class="fas fa-home" >HOME</i>
+		</button>
+	</head>
+		
+	
+	
     <body>
-        <div class="text-center" style="padding-bottom: 200px">
-            <h1>Results</h1>
+		
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+			
+			var selections = [];
+			var count = 1;
+			var item;
+			var options = { 
+				data: {	//add items here
+					"Red Onion (1 lb)": 'https://images.freshop.com/606958/d2dafb6eb17befbcbc09747e00ace681_medium.png',
+					"White Onion (1 lb)": 'https://images.freshop.com/12537/146bacbca983e0e05116e885f873328f_medium.png',
+					"Hot Cheetos": 'https://images.freshop.com/5227981/0e16d3e35542061bda660e36db14ca1b_medium.png',
+					"Red Lettuce":'',
+					"Mozzarella Cheese (32 oz.)":'',
+					"Eggs (1 Dozen)":'',
+					"Prego Pasta Sauce (1 jar)":'',
+					"Chips Ahoy Cookies (1 pack)":'',
+					"French Bread (1 loaf)":'',
+					"2% Milk (1 Gallon)":''
+					
+					
+				},
+				
+				
+				//on selection, open modal. set the count to 1, display the item.
+				// and when you click on add to list, insert the thing. Set Count back to 1
+				//
+				
+				//once an option is selected
+				onAutocomplete: function(val){
+					item = val;
+					//Invoke Popup
+					$('.modal').modal();
+					$(".modal").modal('open');
+					
+					$('#count').html(1);
+					
+					//Display Item
+					$('.item').html(val);
+					
+					
+					$("#add").unbind("click").click(function(){
+						$('#count').html(count +=1);
+					});
+					
+					$("#subtract").unbind("click").click(function(){
+						if(count > 0){
+						$('#count').text(count=count-1);
+						}
+					});
+					
+					},
+					};
+					
+					$("#addToList").click(function(){
+						var newElement = document.createElement('li');
+						document.getElementById("autocomplete-input").value = '';
+						document.getElementById("groceryList").appendChild(newElement);
+						newElement.innerHTML= count + "  " + item + "  <button class='delete' >X</button>";
+						
+						selections.push({
+						key: item,
+							value: count
+						});
+						
+						$('.delete').on('click', function(){
+							$(this).parent().remove();
+						});	
+						count = 1;//set count back to 1 after addedto list
+					});
+					
+				//},
+				
+			//};
+			
+			
+			var elems = document.querySelectorAll('.autocomplete');
+			var instances = M.Autocomplete.init(elems, options);
+			});
+		</script>
+		
+
+		<div class="text-center" style="padding-bottom: 200px">
+            <img src="images/create_new_list.png" alt="banner" style="width: 300px; height: 50px; margin: 25px">
         </div>
         
+		<div class='container'>
+		 <div class="row">
+			<div class="col s12">
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="material-icons prefix">search</i>
+						<input type="text" id="autocomplete-input" class="autocomplete">
+						<label for="autocomplete-input">Search Items</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
 		
 		
-        
-        <div class="text-center">
-            <button type="button" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 5px" onclick="location.href = 'detailed_view.html';">Detailed View</button>
+		
+		
+		<!-- Modal -->
+
+		<!-- Modal Structure -->
+		<div id="modal1" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4 class = 'item' align = "center"></h4>
+				<p align = "center">How many would you like to add?</p>
+				<div class = "container">
+					<div class = "row" align = "center">
+						<div class = "col s3">
+							<a class="btn-floating" id = 'subtract'><i class="material-icons">remove</i></a>
+						</div>
+						
+						<div class="col s3">
+							<h3 id = 'count'></h3>
+						</div>
+						
+						<div class="col s3">
+							<a class="btn-floating" id = 'add'><i class="material-icons">add</i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		<div class="modal-footer">
+			<button id = "addToList" class="modal-close waves-effect waves-green btn-flat" >Add to List</button>
+		</div>
+		</div>
+		
+
+		<div class="container">
+			<ul id = "groceryList">
+			</ul>
+		</div>
+		
+		
+		<div class="text-center">
+            <button type="button" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 5px" onclick="location.href = 'location.html';">Next</button>
         </div>
-        
-    </body>
-    
+	
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</body>
 </html>
