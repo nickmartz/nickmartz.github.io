@@ -24,26 +24,56 @@
         <button type = "button" class= "btn btn-default" onclick="location.href = 'index.html';">
 			<i class="fas fa-home" >HOME</i>
 		</button>
+        
+        <div class="text-center">
+            <img src="images/detailed_view.png" alt="banner" style="width: 200px; height: 75px; margin: 25px; margin-top: 40px">
+        </div>
+        
     </head>
     
     <body>
-	
-
-        <div class="text-center" style="padding-bottom: 200px">
-            <h1>Detailed View</h1>
-			<h3>Ralphs La Jolla</h3>
-			<h4>8657 Villa La Jolla Dr, La Jolla, CA 92037</h4>
+        
+        <h2 class="text-center" style="margin-top: 10px;">Sunshine Market</h2>
+        <h6 class="text-center">9500 Gilman Dr<br>La Jolla, CA 92093</h6>
+        
+        <div class="text-center" style="padding-top: 50px; padding-bottom: 100px">
+            <h5 class="left" id="quantity" style="padding-left: 75px"></h5>
+            <h5 class="right" id="item" style="padding-right: 75px"></h5>   
         </div>
         
-        
-        <div class = "text-center">
-			<h4> Total = $2.00</h4>
+        <div class = "right" style="padding-right: 50px">
+			<h5 id="subtotal"></h5>
+            <h5 id="tax"></h5>
+            <h5 id="total"></h5>
 		</div>
         
-        <div class="text-center">
+        
+        <div class="text-center" style="padding-top: 175px">
             <button type="button" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 5px" onclick="location.href = 'map.html';">Go to Map</button>
         </div>
         
     </body>
+    
+    <script>
+        itemArray = [];
+        itemCountArray = [];
+        
+        for(var key in localStorage) {
+            item = itemArray.push(key);
+        }
+        
+        document.getElementById("quantity").innerHTML = localStorage.getItem(itemArray[0]);
+        
+        document.getElementById("item").innerHTML = itemArray[0];
+        
+        document.getElementById("subtotal").innerHTML = "Subtotal: $" + localStorage.getItem(itemArray[0]) + ".00";
+        
+        document.getElementById("tax").innerHTML = "Tax: $" + localStorage.getItem(itemArray[0])*0.075;
+        
+        subtotal = localStorage.getItem(itemArray[0]);
+        tax = localStorage.getItem(itemArray[0])*0.075;
+        total = +subtotal + tax;
+        document.getElementById("total").innerHTML = "Total: $" + total;
+    </script>
     
 </html>

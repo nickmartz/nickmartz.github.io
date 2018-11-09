@@ -40,6 +40,7 @@
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
 			
+            var myStorage = window.localStorage;
 			var selections = [];
 			var count = 1;
 			var item;
@@ -58,7 +59,6 @@
 					
 					
 				},
-				
 				
 				//on selection, open modal. set the count to 1, display the item.
 				// and when you click on add to list, insert the thing. Set Count back to 1
@@ -92,6 +92,10 @@
 					
 					$("#addToList").click(function(){
 						var newElement = document.createElement('li');
+                        
+                        // sets up an item in the storage with its count
+                        myStorage.setItem(item, count);
+                        
 						document.getElementById("autocomplete-input").value = '';
 						document.getElementById("groceryList").appendChild(newElement);
 						newElement.innerHTML= count + "  " + item + "  <button class='delete' >X</button>";
@@ -102,6 +106,8 @@
 						});
 						
 						$('.delete').on('click', function(){
+                            //still need to figure out a way to delete in storage
+                            //myStorage.removeItem($(this).parent());
 							$(this).parent().remove();
 						});	
 						count = 1;//set count back to 1 after addedto list

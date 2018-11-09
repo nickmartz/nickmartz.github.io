@@ -24,20 +24,66 @@
         <button type = "button" class= "btn btn-default" onclick="location.href = 'main.html';">
 			<i class="fas fa-home" >HOME</i>
 		</button>
+        
+        <div class="text-center" style="padding-bottom: 50px">
+            <img src="images/results.png" alt="banner" style="width: 175px; height: 50px; margin: 25px; margin-top: 40px">
+        </div>
+        
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                }
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                }
+        </style>
     </head>
     
     <body>
-        <div class="text-center" style="padding-bottom: 200px">
-            <h1>Results</h1>
-        </div>
-        
-		
-		
+        <table>
+            <tr>
+                <th>Price</th><th>Store</th><th>Distance</th>
+            </tr>
+            <tr>
+                <td id="sunshine"></td>
+                <td>Sunshine Market</td>
+                <td>0.01 mi</td>
+            </tr>
+            <tr>
+                <td id="ralphs"></td>
+                <td>Ralphs</td>
+                <td>1.5 mi</td>
+            </tr>
+            <tr>
+                <td id="wholefoods"></td>
+                <td>Whole Foods</td>
+                <td>2 mi</td>
+            </tr>
+        </table>
         
         <div class="text-center">
-            <button type="button" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 5px" onclick="location.href = 'detailed_view.html';">Detailed View</button>
+            <button type="button" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 100px" onclick="location.href = 'detailed_view.html';">Go To Closest</button>
         </div>
         
     </body>
+    
+    <script>
+        itemArray = [];
+        itemCountArray = [];
+        
+        for(var key in localStorage) {
+            item = itemArray.push(key);
+        }
+        
+        document.getElementById("sunshine").innerHTML = "$" + localStorage.getItem(itemArray[0]) + ".00";
+        
+        document.getElementById("ralphs").innerHTML = "$" + localStorage.getItem(itemArray[0])* 2 + ".00";
+        
+        document.getElementById("wholefoods").innerHTML = "$" + localStorage.getItem(itemArray[0])* 100 + ".00";
+    </script>
     
 </html>
