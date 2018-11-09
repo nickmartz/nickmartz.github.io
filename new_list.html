@@ -23,6 +23,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		
 		
+		
 		<button type = "button" class= "btn btn-default" onclick="location.href = 'main.html';">
 			<i class="fas fa-arrow-left" >Back</i>
 		</button>
@@ -34,51 +35,77 @@
 		
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
-
+			
+			var selections = [];
+			var count = 1;
+			var item;
 			var options = { 
 				data: {	//add items here
-					"Red Onion": 'https://images.freshop.com/606958/d2dafb6eb17befbcbc09747e00ace681_medium.png',
-					"White Onion": 'https://images.freshop.com/12537/146bacbca983e0e05116e885f873328f_medium.png',
-					"Hot Cheetos": 'https://images.freshop.com/5227981/0e16d3e35542061bda660e36db14ca1b_medium.png'
+					"Red Onion (1 lb)": 'https://images.freshop.com/606958/d2dafb6eb17befbcbc09747e00ace681_medium.png',
+					"White Onion (1 lb)": 'https://images.freshop.com/12537/146bacbca983e0e05116e885f873328f_medium.png',
+					"Hot Cheetos": 'https://images.freshop.com/5227981/0e16d3e35542061bda660e36db14ca1b_medium.png',
+					"Red Lettuce":'',
+					"Mozzarella Cheese (32 oz.)":'',
+					"Eggs (1 Dozen)":'',
+					"Prego Pasta Sauce (1 jar)":'',
+					"Chips Ahoy Cookies (1 pack)":'',
+					"French Bread (1 loaf)":'',
+					"2% Milk (1 Gallon)":''
+					"
+					
 				},
+				
+				
+				//on selection, open modal. set the count to 1, display the item.
+				// and when you click on add to list, insert the thing. Set Count back to 1
+				//
 				
 				//once an option is selected
 				onAutocomplete: function(val){
-					var count = 1;
+					item = val;
 					//Invoke Popup
 					$('.modal').modal();
 					$(".modal").modal('open');
-
+					
 					$('#count').html(1);
 					
 					//Display Item
 					$('.item').html(val);
 					
 					
-					$("#add").click(function(){
+					$("#add").unbind("click").click(function(){
 						$('#count').html(count +=1);
 					});
 					
-					$("#subtract").click(function(){
+					$("#subtract").unbind("click").click(function(){
 						if(count > 0){
 						$('#count').text(count=count-1);
 						}
 					});
-
-					//var newElement = document.createElement('li');
+					
+					},
+					};
+					
 					$("#addToList").click(function(){
-						document.getElementById("autocomplete-input").value = '';	//Clears the input value
-						$("#groceryList").append('<li><button class = "delete">X</button>'+val+'</li>');
-						//document.getElementById("groceryList").appendChild(newElement);
-						//newElement.innerHTML= count + "  " + val + "  <button class='delete' >X</button>";
+						var newElement = document.createElement('li');
+						document.getElementById("autocomplete-input").value = '';
+						document.getElementById("groceryList").appendChild(newElement);
+						newElement.innerHTML= count + "  " + item + "  <button class='delete' >X</button>";
+						
+						selections.push({
+						key: item,
+							value: count
+						});
 						
 						$('.delete').on('click', function(){
 							$(this).parent().remove();
 						});	
+						count = 1;//set count back to 1 after addedto list
 					});
-				},
+					
+				//},
 				
-			};
+			//};
 			
 			
 			var elems = document.querySelectorAll('.autocomplete');
