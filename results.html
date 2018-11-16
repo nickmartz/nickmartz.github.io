@@ -51,17 +51,17 @@
             <tr>
                 <td id="sunshine"></td>
                 <td>Sunshine Market</td>
-                <td>0.01 mi</td>
+                <td id="distance1"></td>
             </tr>
             <tr>
                 <td id="ralphs"></td>
                 <td>Ralphs</td>
-                <td>1.5 mi</td>
+                <td id="distance2"></td>
             </tr>
             <tr>
                 <td id="wholefoods"></td>
                 <td>Whole Foods</td>
-                <td>2 mi</td>
+                <td id = "distance3"></td>
             </tr>
         </table>
         
@@ -75,15 +75,17 @@
         itemArray = [];
         itemCountArray = [];
         
-        for(var key in localStorage) {
-            item = itemArray.push(key);
-        }
+        //for(var key in localStorage) {
+            //item = itemArray.push(key);
+        //}
         
-        document.getElementById("sunshine").innerHTML = "$" + localStorage.getItem(itemArray[0]) + ".00";
+        document.getElementById("sunshine").innerHTML = "$" + localStorage.getItem("total") + ".00";
         
-        document.getElementById("ralphs").innerHTML = "$" + localStorage.getItem(itemArray[0])* 2 + ".00";
+        document.getElementById("ralphs").innerHTML = "$" + localStorage.getItem("total")* 2 + ".00";
         
-        document.getElementById("wholefoods").innerHTML = "$" + localStorage.getItem(itemArray[0])* 100 + ".00";
+        document.getElementById("wholefoods").innerHTML = "$" + localStorage.getItem("total")* 3 + ".00";
+		
+		
     </script>
     
 </html>

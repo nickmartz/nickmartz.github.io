@@ -30,6 +30,25 @@
     </head>
     
     <body>
+		
+		<script>
+			//calculate total here and save random values to lstorage
+			var lstorage = window.localStorage;
+			lstorage.clear();
+			var total = 0;
+			for(var i = 0; i < sessionStorage.length; i++){
+					var subtotal = Math.floor((Math.random() * 11) + 1);
+					
+					//save to localstorage
+					lstorage.setItem(sessionStorage.key(i),subtotal)
+					
+					total = total + subtotal;
+			}
+		
+		lstorage.setItem("total",total);
+		
+			
+		</script>
         <div class="center-align">
             <img src="images/enter_location.png" alt="banner" style="width: 300px; height: 55px; margin: 25px">
         </div>
@@ -52,7 +71,7 @@
         
         <div class="text-center">
 
-            <button type="button" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 5px" onclick="location.href = 'results.html';">Find My Store</button>
+            <button type="button" id = "next" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 5px" onclick="location.href = 'results.html';">Find My Store</button>
         </div>
         
     </body>

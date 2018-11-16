@@ -36,16 +36,13 @@
         <h2 class="text-center" style="margin-top: 10px;">Sunshine Market</h2>
         <h6 class="text-center">9500 Gilman Dr<br>La Jolla, CA 92093</h6>
         
-        <div class="text-center" style="padding-top: 50px; padding-bottom: 100px">
-            <h5 class="left" id="quantity" style="padding-left: 75px"></h5>
-            <h5 class="right" id="item" style="padding-right: 75px"></h5>   
-        </div>
-        
-        <div class = "right" style="padding-right: 50px">
-			<h5 id="subtotal"></h5>
-            <h5 id="tax"></h5>
-            <h5 id="total"></h5>
+		
+		<div class="center-align">
+			<ul id = "receipt">
 		</div>
+		
+		<h2 class="text-center", id = "totalCost"></h2>
+        
         
         
         <div class="text-center" style="padding-top: 175px">
@@ -55,25 +52,19 @@
     </body>
     
     <script>
-        itemArray = [];
-        itemCountArray = [];
-        
-        for(var key in localStorage) {
-            item = itemArray.push(key);
-        }
-        
-        document.getElementById("quantity").innerHTML = localStorage.getItem(itemArray[0]);
-        
-        document.getElementById("item").innerHTML = itemArray[0];
-        
-        document.getElementById("subtotal").innerHTML = "Subtotal: $" + localStorage.getItem(itemArray[0]) + ".00";
-        
-        document.getElementById("tax").innerHTML = "Tax: $" + localStorage.getItem(itemArray[0])*0.075;
-        
-        subtotal = localStorage.getItem(itemArray[0]);
-        tax = localStorage.getItem(itemArray[0])*0.075;
-        total = +subtotal + tax;
-        document.getElementById("total").innerHTML = "Total: $" + total;
+		document.addEventListener('DOMContentLoaded', function() {
+			var total = 0;
+			for(var i = 0; i < sessionStorage.length; i++){
+					
+					var cost = localStorage.getItem(sessionStorage.key(i));
+					var newElement = document.createElement('li');
+					document.getElementById("receipt").appendChild(newElement);
+					newElement.innerHTML= sessionStorage.getItem(sessionStorage.key(i)) + "  " + sessionStorage.key(i) + "      $" + cost;
+					//(localStorage.key(i));
+			}
+			
+			document.getElementById("totalCost").innerHTML = "Total: $" + localStorage.getItem("total");
+			});
     </script>
     
 </html>
