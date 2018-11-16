@@ -24,7 +24,7 @@
 			<i class="fas fa-arrow-left" >Back</i>
 		</button>
         
-        <button type = "button" class= "btn btn-default" onclick="location.href = 'index.html';">
+        <button type = "button" class= "btn btn-default" onclick="location.href = 'main.html';">
 			<i class="fas fa-home" >HOME</i>
 		</button>
     </head>
@@ -45,9 +45,19 @@
 					total = total + subtotal;
 			}
 		
-		lstorage.setItem("total",total);
+			lstorage.setItem("total",total);
 		
-			
+			function save()/*function to check userid & password*/
+			{
+					if(document.getElementById("miles").value > 0){
+						lstorage.setItem("miles",document.getElementById("miles").value)
+						window.open('results.html')/*opens the target page while Id & password matches*/
+					}
+					
+					else{
+						alert("Please enter a valid number for maximum distance");
+					}
+			}
 		</script>
         <div class="center-align">
             <img src="images/enter_location.png" alt="banner" style="width: 300px; height: 55px; margin: 25px">
@@ -71,7 +81,7 @@
         
         <div class="text-center">
 
-            <button type="button" id = "next" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 5px" onclick="location.href = 'results.html';">Find My Store</button>
+            <button type="button" id = "next" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 5px" onclick="save()">Find My Store</button>
         </div>
         
     </body>
