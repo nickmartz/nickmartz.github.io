@@ -75,9 +75,6 @@
         itemArray = [];
         itemCountArray = [];
         
-        //for(var key in localStorage) {
-            //item = itemArray.push(key);
-        //}
         
         document.getElementById("sunshine").innerHTML = "$" + localStorage.getItem("total") + ".00";
         
@@ -85,6 +82,11 @@
         
         document.getElementById("wholefoods").innerHTML = "$" + localStorage.getItem("total")* 3 + ".00";
 		
+        document.getElementById("distance1").innerHTML = "0.01 mi"
+        
+        document.getElementById("distance2").innerHTML = "1.0 mi"
+        
+        document.getElementById("distance3").innerHTML = "2.0 mi"
 		
     </script>
     
