@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>FindMyIngredients</title>
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+		
+		<button type = "button" class= "btn btn-default" onclick="location.href = 'location.html';">
+			<i class="fas fa-arrow-left" >Back</i>
+		</button>
+        
+        <button type = "button" class= "btn btn-default" onclick="location.href = 'main.html';">
+			<i class="fas fa-home" >HOME</i>
+		</button>
+        
+        <div class="text-center" style="padding-bottom: 50px">
+            <img src="images/results.png" alt="banner" style="width: 175px; height: 50px; margin: 25px; margin-top: 40px">
+        </div>
+        
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                }
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                }
+        </style>
+    </head>
+    
+    <body>
+        <table>
+            <tr>
+                <th>Price</th><th>Store</th><th>Distance</th>
+            </tr>
+            <tr onclick="window.location='detailed_view.html';">
+                <td id="sunshine"></td>
+                <td>Sunshine Market</td>
+                <td id="distance1"></td>
+            </tr>
+            <tr onclick="window.location='detailed_view1.html';">
+                <td id="ralphs"></td>
+                <td>Ralphs</td>
+                <td id="distance2"></td>
+            </tr>
+            <tr onclick="window.location='detailed_view2.html';">
+                <td id="wholefoods"></td>
+                <td>Whole Foods</td>
+                <td id = "distance3"></td>
+				
+            </tr>
+        </table>
+        
+        <div class="text-center">
+            <button type="button" class="btn btn-success" name="new_list" style="width: 300px; height: 50px; margin: 100px" onclick="location.href = 'detailed_view.html';">Go To Closest</button>
+        </div>
+        
+    </body>
+    
+    <script>
+        
+        document.getElementById("sunshine").innerHTML = "$" + localStorage.getItem("total") + ".00";
+        
+        document.getElementById("ralphs").innerHTML = "$" + localStorage.getItem("total")* 2 + ".00";
+        
+        document.getElementById("wholefoods").innerHTML = "$" + localStorage.getItem("total")* 3 + ".00";
+		
+		document.getElementById("distance3").innerHTML = localStorage.getItem("miles")+ " mi";
+		
+		document.getElementById("distance2").innerHTML = localStorage.getItem("miles")/2 + " mi";
+		
+		document.getElementById("distance1").innerHTML = localStorage.getItem("miles")/10+ " mi";
+    </script>
+    
+</html>
