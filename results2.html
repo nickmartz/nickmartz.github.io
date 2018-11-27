@@ -10,12 +10,14 @@
         
         <title>FindMyIngredients</title>
         
+		
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 		<!-- Compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 		<!-- Font Awesome -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+		
 		
 		<button type = "button" class= "btn btn-default" onclick="location.href = 'location.html';">
 			<i class="fas fa-arrow-left" >Back</i>
@@ -44,10 +46,10 @@
     </head>
     
     <body>
-        <table>
-            <tr>
-                <th>Price</th><th>Store</th><th>Distance</th>
-            </tr>
+        <table id = 'results'>
+            <thead>
+                <th data-tsorter="numeric" >Price</th><th class = "sortable">Store</th><th>Distance</th>
+            </thead>
             <tr onclick="window.location='detailed_view.html';">
                 <td id="sunshine"></td>
                 <td>Sunshine Market</td>
@@ -74,17 +76,24 @@
     
     <script>
         
-        document.getElementById("sunshine").innerHTML = "$" + localStorage.getItem("total") + ".00";
+        document.getElementById("sunshine").innerHTML = localStorage.getItem("total") + ".00";
         
-        document.getElementById("ralphs").innerHTML = "$" + localStorage.getItem("total")* 2 + ".00";
+        document.getElementById("ralphs").innerHTML = localStorage.getItem("total")* 2 + ".00";
         
-        document.getElementById("wholefoods").innerHTML = "$" + localStorage.getItem("total")* 3 + ".00";
+        document.getElementById("wholefoods").innerHTML = localStorage.getItem("total")* 3 + ".00";
 		
 		document.getElementById("distance3").innerHTML = localStorage.getItem("miles")+ " mi";
 		
 		document.getElementById("distance2").innerHTML = localStorage.getItem("miles")/2 + " mi";
 		
 		document.getElementById("distance1").innerHTML = localStorage.getItem("miles")/10+ " mi";
-    </script>
+		
+		function init() {
+			var sorter = tsorter.create('results');
+		}
     
+		window.onload = init;
+		
+    </script>
+    <script src="JavaScript/tsorter.min.js" type="text/javascript"></script>
 </html>
